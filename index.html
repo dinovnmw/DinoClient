@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DINO CLIENT 1.8.9 | Next-Gen PVP Client</title>
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -12,7 +11,7 @@
                 extend: {
                     colors: {
                         brand: {
-                            cyan: '#0891b2', /* Cyan đậm tối ưu trên nền trắng */
+                            cyan: '#0891b2',
                             lightBg: '#f8fafc',
                             card: '#ffffff',
                             border: '#e2e8f0',
@@ -23,7 +22,6 @@
             }
         }
     </script>
-    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -34,12 +32,10 @@
             overflow-x: hidden;
         }
 
-        /* Tối ưu hóa hiệu ứng chuyển động mượt mà toàn trang */
         .smooth-transition {
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* Thanh cuộn tối giản phong cách macOS */
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -54,7 +50,6 @@
             background: #0891b2;
         }
 
-        /* Nền lưới tương tác */
         .bg-grid {
             background-size: 32px 32px;
             background-image: 
@@ -62,7 +57,6 @@
                 linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
         }
 
-        /* Spotlight chuột bám đuổi */
         .mouse-spotlight {
             position: fixed;
             top: 0;
@@ -78,7 +72,6 @@
             transition: opacity 0.5s ease;
         }
 
-        /* Cấu trúc 3D tilt cho card */
         .tilt-card {
             transform-style: preserve-3d;
             perspective: 1000px;
@@ -91,13 +84,10 @@
 </head>
 <body class="text-slate-700 bg-grid min-h-screen">
 
-    <!-- Spotlight chạy theo chuột -->
     <div class="mouse-spotlight hidden md:block" id="spotlight"></div>
 
-    <!-- HEADER & NAVIGATION -->
     <header class="fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-lg border-b border-brand-border smooth-transition">
         <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <!-- Brand Logo -->
             <a href="#" class="flex items-center gap-3 group">
                 <div class="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center text-white group-hover:scale-105 active:scale-95 smooth-transition">
                     <i class="fa-solid fa-dragon text-lg"></i>
@@ -108,14 +98,12 @@
                 </div>
             </a>
 
-            <!-- Nav Links -->
             <nav class="hidden md:flex items-center gap-8">
                 <a href="#" class="text-xs font-bold text-slate-800 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Trang Chủ</a>
                 <a href="#features" class="text-xs font-bold text-slate-500 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Tính Năng</a>
                 <a href="#social" class="text-xs font-bold text-slate-500 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Liên Kết</a>
             </nav>
 
-            <!-- CTA -->
             <div class="flex items-center gap-3">
                 <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="w-9 h-9 rounded-lg flex items-center justify-center bg-white border border-brand-border hover:bg-slate-50 hover:border-slate-300 hover:scale-105 active:scale-95 smooth-transition text-slate-600">
                     <i class="fa-brands fa-discord text-base"></i>
@@ -127,7 +115,6 @@
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="min-h-screen pt-36 pb-20 px-6 flex flex-col justify-center relative bg-white/40">
         <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
             <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-brand-border shadow-sm">
@@ -152,7 +139,6 @@
                 </a>
             </div>
 
-            <!-- Flat Stats Dashboard -->
             <div class="grid grid-cols-3 gap-4 pt-12 max-w-md mx-auto border-t border-brand-border">
                 <div class="hover:scale-105 smooth-transition">
                     <div class="text-2xl font-black text-slate-900">400+</div>
@@ -170,7 +156,6 @@
         </div>
     </section>
 
-    <!-- FEATURES SECTION -->
     <section id="features" class="py-24 px-6 bg-[#f8fafc] border-t border-brand-border relative z-10">
         <div class="max-w-6xl mx-auto">
             <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
@@ -178,10 +163,8 @@
                 <p class="text-slate-500 text-xs sm:text-sm">Tập trung hoàn toàn vào cấu trúc lõi để cải thiện hiệu suất game mà không thêm bớt tính năng thừa.</p>
             </div>
 
-            <!-- Grid cards with 3D Tilt Effect -->
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- Feature 1 -->
                 <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
                     <div class="tilt-inner space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
@@ -192,7 +175,6 @@
                     </div>
                 </div>
 
-                <!-- Feature 2 -->
                 <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
                     <div class="tilt-inner space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
@@ -203,7 +185,6 @@
                     </div>
                 </div>
 
-                <!-- Feature 3 -->
                 <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
                     <div class="tilt-inner space-y-4">
                         <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
@@ -218,7 +199,6 @@
         </div>
     </section>
 
-    <!-- SOCIALS SECTION -->
     <section id="social" class="py-24 px-6 border-t border-brand-border bg-white relative z-10">
         <div class="max-w-5xl mx-auto text-center">
             <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 mb-3">Kênh Liên Kết & Cộng Đồng</h2>
@@ -226,7 +206,6 @@
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 
-                <!-- YouTube -->
                 <a href="https://www.youtube.com/@dinovnmwvip" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-red-500/50 hover:shadow-xl smooth-transition group">
                     <div class="tilt-inner flex flex-col items-center">
                         <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-600 mb-5 text-2xl border border-red-100 group-hover:bg-red-600 group-hover:text-white smooth-transition">
@@ -238,7 +217,6 @@
                     </div>
                 </a>
 
-                <!-- Profile -->
                 <a href="https://guns.lol/cno" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-purple-500/50 hover:shadow-xl smooth-transition group">
                     <div class="tilt-inner flex flex-col items-center">
                         <div class="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mb-5 text-2xl border border-purple-100 group-hover:bg-purple-600 group-hover:text-white smooth-transition">
@@ -250,7 +228,6 @@
                     </div>
                 </a>
 
-                <!-- Discord -->
                 <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-blue-500/50 hover:shadow-xl smooth-transition group">
                     <div class="tilt-inner flex flex-col items-center">
                         <div class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-5 text-2xl border border-blue-100 group-hover:bg-blue-600 group-hover:text-white smooth-transition">
@@ -266,7 +243,6 @@
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="py-12 px-6 border-t border-brand-border bg-slate-50 relative z-10">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
             <div>
@@ -281,7 +257,6 @@
         </div>
     </footer>
 
-    <!-- DOWNLOAD MODAL -->
     <div id="download-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/30 backdrop-blur-md opacity-0 pointer-events-none smooth-transition">
         <div class="w-full max-w-sm bg-white rounded-2xl p-6 border border-brand-border relative transform scale-95 transition-transform duration-300 shadow-2xl">
             <button onclick="closeDownloadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 smooth-transition"><i class="fa-solid fa-xmark"></i></button>
@@ -314,27 +289,23 @@
         </div>
     </div>
 
-    <!-- SCRIPTS FOR INTERACTIVE EFFECTS -->
     <script>
-        // 1. Spotlight chạy bám đuổi chuột
         const spotlight = document.getElementById('spotlight');
         document.addEventListener('mousemove', (e) => {
             spotlight.style.left = `${e.clientX}px`;
             spotlight.style.top = `${e.clientY}px`;
         });
 
-        // 2. Hiệu ứng Nghiêng 3D (3D Tilt Effect) cho các Card
         const cards = document.querySelectorAll('.tilt-card');
         cards.forEach(card => {
             card.addEventListener('mousemove', (e) => {
                 const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left; // Tọa độ X chuột trên thẻ
-                const y = e.clientY - rect.top;  // Tọa độ Y chuột trên thẻ
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
                 
                 const width = rect.width;
                 const height = rect.height;
                 
-                // Tính toán góc nghiêng (tối đa ~12 độ)
                 const rotateX = ((height / 2 - y) / (height / 2)) * 12;
                 const rotateY = ((x - width / 2) / (width / 2)) * 12;
                 
@@ -346,7 +317,6 @@
             });
         });
 
-        // 3. Tương tác đóng/mở Modal tải xuống
         function openDownloadModal() {
             const modal = document.getElementById('download-modal');
             const inner = modal.querySelector('.transform');
