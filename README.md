@@ -1,7 +1,7 @@
 
 Hoàng Sa và Trường Sa là của Việt Nam! 👑
 
-🇻🇳 DINOCLIENT 1.8.9 PvP Client
+🇻🇳 DINOCLIENT 1.8.9 PvP Client BASED ON CLOUD CLIENT
 📌 Tổng Quan (Overview)
 DINOCLIENT là Client hỗ trợ tối ưu hiệu năng (FPS Boost) và cung cấp các tính năng hỗ trợ PvP mượt mà dành cho phiên bản Minecraft 1.8.9.
 
