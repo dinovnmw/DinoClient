@@ -1,330 +1,278 @@
 <!DOCTYPE html>
-<html lang="vi" class="scroll-smooth">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DINO CLIENT 1.8.9 | Next-Gen PVP Client</title>
+    <title>DinoX Client 1.8.9 | Clean & Lightweight</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            cyan: '#0891b2',
-                            lightBg: '#f8fafc',
-                            card: '#ffffff',
-                            border: '#e2e8f0',
-                            textDark: '#0f172a'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         body {
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            background-color: #f8fafc;
+            font-family: 'Space Grotesk', sans-serif;
+            background-color: #050505;
+            color: #e2e8f0;
             overflow-x: hidden;
         }
-
-        .smooth-transition {
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        .mono {
+            font-family: 'JetBrains Mono', monospace;
         }
-
+        .retro-grid {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #f8fafc;
+            background: #050505;
         }
         ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
-            border-radius: 99px;
+            background: #1e293b;
+            border-radius: 3px;
         }
         ::-webkit-scrollbar-thumb:hover {
-            background: #0891b2;
+            background: #22c55e;
         }
-
-        .bg-grid {
-            background-size: 32px 32px;
-            background-image: 
-                linear-gradient(to right, rgba(15, 23, 42, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(15, 23, 42, 0.03) 1px, transparent 1px);
-        }
-
-        .mouse-spotlight {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(8, 145, 178, 0.04) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-            transform: translate(-50%, -50%);
-            z-index: 1;
-            will-change: transform;
-            transition: opacity 0.5s ease;
-        }
-
-        .tilt-card {
-            transform-style: preserve-3d;
-            perspective: 1000px;
-            will-change: transform;
-        }
-        .tilt-inner {
-            transform: translateZ(20px);
+        .key-active {
+            background-color: #22c55e !important;
+            color: #000000 !important;
+            transform: scale(0.95);
+            box-shadow: 0 0 15px rgba(34, 197, 94, 0.6);
         }
     </style>
 </head>
-<body class="text-slate-700 bg-grid min-h-screen">
+<body class="selection:bg-green-500 selection:text-black retro-grid">
 
-    <div class="mouse-spotlight hidden md:block" id="spotlight"></div>
-
-    <header class="fixed top-0 left-0 w-full z-50 bg-white/85 backdrop-blur-lg border-b border-brand-border smooth-transition">
-        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="flex items-center gap-3 group">
-                <div class="w-9 h-9 rounded-lg bg-slate-900 flex items-center justify-center text-white group-hover:scale-105 active:scale-95 smooth-transition">
-                    <i class="fa-solid fa-dragon text-lg"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-base font-bold tracking-wider text-slate-900">DINO CLIENT</span>
-                    <span class="text-[9px] font-semibold text-slate-400 uppercase tracking-widest">1.8.9 PVP</span>
-                </div>
+    <nav class="fixed top-0 left-0 w-full z-50 bg-[#050505]/80 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
+                <span class="font-bold tracking-tight text-white mono">DinoX.run</span>
             </a>
-
-            <nav class="hidden md:flex items-center gap-8">
-                <a href="#" class="text-xs font-bold text-slate-800 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Trang Chủ</a>
-                <a href="#features" class="text-xs font-bold text-slate-500 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Tính Năng</a>
-                <a href="#social" class="text-xs font-bold text-slate-500 hover:text-brand-cyan hover:-translate-y-0.5 smooth-transition">Liên Kết</a>
-            </nav>
-
-            <div class="flex items-center gap-3">
-                <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="w-9 h-9 rounded-lg flex items-center justify-center bg-white border border-brand-border hover:bg-slate-50 hover:border-slate-300 hover:scale-105 active:scale-95 smooth-transition text-slate-600">
-                    <i class="fa-brands fa-discord text-base"></i>
+            
+            <div class="flex items-center gap-6">
+                <a href="#features" class="text-xs tracking-wider text-gray-400 hover:text-white transition-colors uppercase font-medium">Tính năng</a>
+                <a href="#hud-tester" class="text-xs tracking-wider text-gray-400 hover:text-white transition-colors uppercase font-medium">Test HUD</a>
+                <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="text-xs tracking-wider text-green-400 hover:text-green-300 transition-colors uppercase font-medium flex items-center gap-1">
+                    Discord <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
                 </a>
-                <button onclick="openDownloadModal()" class="px-4 py-2 rounded-lg bg-slate-900 hover:bg-slate-800 hover:scale-105 active:scale-95 text-white font-bold text-xs tracking-wide smooth-transition shadow-sm">
-                    <i class="fa-solid fa-download mr-1"></i> TẢI NGAY
-                </button>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="min-h-screen pt-36 pb-20 px-6 flex flex-col justify-center relative bg-white/40">
-        <div class="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/80 border border-brand-border shadow-sm">
-                <span class="w-2 h-2 rounded-full bg-brand-cyan animate-pulse"></span>
-                <span class="text-[10px] font-bold text-slate-600 tracking-wider uppercase">DinoClient v1.4.1</span>
-            </div>
-            
-            <h1 class="text-4xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-tight">
-                Tối Ưu Hóa Trải Nghiệm Minecraft PVP
+    <main class="min-h-screen flex flex-col justify-center items-center pt-32 px-6 relative">
+        <div class="absolute w-[300px] h-[300px] bg-green-500/10 rounded-full blur-[100px] top-1/3 left-1/2 -translate-x-1/2 pointer-events-none"></div>
+
+        <div class="text-center max-w-3xl z-10">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tighter text-white mb-6">
+                DinoX<span class="text-green-500">Client</span>
             </h1>
-
-            <p class="text-slate-500 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
-                Client tối giản, mượt mà và tập trung tối đa vào hiệu năng thực chiến. Khắc phục triệt để lỗi texture, tối ưu hóa bộ nhớ đệm giúp đem lại lượng FPS cao vượt trội.
+            
+            <p class="text-base md:text-lg text-gray-400 max-w-xl mx-auto mb-10 leading-relaxed font-light">
+                Không rác, không quảng cáo bẩn, không ngốn RAM. Client tối giản dành riêng cho cộng đồng Minecraft 1.8.9 PvP Việt Nam.
             </p>
 
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                <button onclick="openDownloadModal()" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-900 hover:bg-slate-800 hover:scale-105 active:scale-95 text-white font-bold text-sm smooth-transition shadow-md">
-                    <i class="fa-solid fa-download mr-2"></i>Tải Xuống Bản 1.8.9
-                </button>
-                <a href="#features" class="w-full sm:w-auto px-7 py-4 rounded-xl bg-white border border-brand-border hover:bg-slate-50 hover:scale-105 active:scale-95 text-slate-800 font-semibold text-sm smooth-transition shadow-sm text-center">
-                    Tìm hiểu tính năng
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-24">
+                <a href="#download" class="w-full sm:w-auto px-8 py-3.5 bg-white text-black font-semibold rounded-lg hover:bg-green-500 hover:text-black transition-all duration-300 flex items-center justify-center gap-2 group">
+                    Tải ngay bản v1.8.9 <i class="fa-solid fa-arrow-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <a href="#hud-tester" class="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-colors flex items-center justify-center gap-2 border border-white/10">
+                    Bấm phím để test HUD
                 </a>
             </div>
+        </div>
 
-            <div class="grid grid-cols-3 gap-4 pt-12 max-w-md mx-auto border-t border-brand-border">
-                <div class="hover:scale-105 smooth-transition">
-                    <div class="text-2xl font-black text-slate-900">400+</div>
-                    <div class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">FPS Boost</div>
+        <section id="hud-tester" class="w-full max-w-4xl mx-auto pb-24">
+            <div class="bg-[#0b0b0c] rounded-2xl border border-white/10 p-6 md:p-8 relative">
+                <div class="absolute top-4 right-4 flex gap-1.5">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500/40"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-yellow-500/40"></span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500/40"></span>
                 </div>
-                <div class="hover:scale-105 smooth-transition">
-                    <div class="text-2xl font-black text-slate-900">0ms</div>
-                    <div class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Độ trễ phản hồi</div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="flex flex-col items-center justify-center p-6 bg-black/40 rounded-xl border border-white/5">
+                        <span class="text-[10px] text-gray-500 uppercase tracking-widest mono mb-6">Interactive HUD Preview (Gõ phím để thử)</span>
+                        
+                        <div class="grid grid-cols-3 gap-2 w-48 mb-2">
+                            <div></div>
+                            <div id="key-w" class="h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-lg text-white transition-all duration-100 uppercase select-none">W</div>
+                            <div></div>
+                            <div id="key-a" class="h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-lg text-white transition-all duration-100 uppercase select-none">A</div>
+                            <div id="key-s" class="h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-lg text-white transition-all duration-100 uppercase select-none">S</div>
+                            <div id="key-d" class="h-14 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-lg text-white transition-all duration-100 uppercase select-none">D</div>
+                        </div>
+
+                        <div class="grid grid-cols-2 gap-2 w-48 mb-2">
+                            <div id="key-lmb" class="h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-xs text-white transition-all duration-100 uppercase select-none">LMB</div>
+                            <div id="key-rmb" class="h-12 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-xs text-white transition-all duration-100 uppercase select-none">RMB</div>
+                        </div>
+
+                        <div id="key-space" class="w-48 h-8 bg-white/5 border border-white/10 rounded-lg flex items-center justify-center font-bold text-xs text-white transition-all duration-100 uppercase select-none">Space</div>
+                    </div>
+
+                    <div class="space-y-6">
+                        <div class="inline-block px-2.5 py-1 bg-green-500/10 text-green-400 rounded text-xs mono">
+                            FPS BOOST MODPACK
+                        </div>
+                        <h3 class="text-3xl font-bold text-white tracking-tight">Tối ưu hoàn hảo cho PvP mượt nhất</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed font-light">
+                            Chúng tôi tinh chỉnh code core và tích hợp sẵn những mod cần thiết để chiến đấu. Không nhồi nhét những tính năng rác làm drop FPS của bạn.
+                        </p>
+                        <ul class="space-y-3 text-sm text-gray-300 mono">
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span> FPS mượt và ổn định hơn bản Vanilla
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span> Keystrokes, Armor Status, ToggleSprint cài sẵn
+                            </li>
+                            <li class="flex items-center gap-2">
+                                <span class="text-green-500">✓</span> Fix các bug render lỗi thời của bản 1.8.9 gốc
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="hover:scale-105 smooth-transition">
-                    <div class="text-2xl font-black text-slate-900">100%</div>
-                    <div class="text-[9px] text-slate-400 font-bold uppercase tracking-wider">Độ ổn định</div>
-                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="features" class="max-w-6xl mx-auto px-6 py-24 border-t border-white/5">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+            <div class="space-y-4">
+                <span class="text-xs text-green-500 tracking-wider uppercase mono">01 / Hiệu suất sạch</span>
+                <h3 class="text-3xl font-bold text-white">Chạy mượt kể cả trên máy cỏ</h3>
+                <p class="text-gray-400 font-light text-sm leading-relaxed">
+                    Được đóng gói gọn gàng, giảm thiểu các tiến trình render thừa của game gốc giúp tối ưu lượng RAM tiêu thụ đáng kể. Bạn sẽ không gặp phải các pha giật lag (micro-stutter) đột ngột khi đang trong combat căng thẳng.
+                </p>
+            </div>
+            <div class="space-y-4">
+                <span class="text-xs text-green-500 tracking-wider uppercase mono">02 / Không lo bị ban</span>
+                <h3 class="text-3xl font-bold text-white">100% Legit & An toàn</h3>
+                <p class="text-gray-400 font-light text-sm leading-relaxed">
+                    Nói không với các mod hack hay can thiệp bất hợp pháp. Client tuân thủ hoàn toàn luật chơi của các máy chủ lớn như Hypixel, Heromc,... giúp bạn an tâm chiến đấu mà không lo dính các lỗi ban tự động từ server.
+                </p>
             </div>
         </div>
     </section>
 
-    <section id="features" class="py-24 px-6 bg-[#f8fafc] border-t border-brand-border relative z-10">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center max-w-xl mx-auto mb-16 space-y-3">
-                <h2 class="text-2xl sm:text-3xl font-bold text-slate-950">Tính Năng Tối Giản</h2>
-                <p class="text-slate-500 text-xs sm:text-sm">Tập trung hoàn toàn vào cấu trúc lõi để cải thiện hiệu suất game mà không thêm bớt tính năng thừa.</p>
+    <section id="download" class="max-w-4xl mx-auto px-6 py-24 text-center">
+        <div class="bg-gradient-to-b from-[#0a0a0b] to-[#050505] rounded-3xl p-12 border border-white/10 relative overflow-hidden">
+            <h2 class="text-4xl font-bold text-white tracking-tight mb-4">Trải nghiệm DinoX ngay hôm nay</h2>
+            <p class="text-gray-400 text-sm max-w-md mx-auto mb-8 font-light">
+                Tải xuống tệp launcher trực tiếp và bắt đầu hành trình PvP mượt mà nhất.
+            </p>
+
+            <div id="dl-toast" class="hidden max-w-sm mx-auto mb-6 bg-green-500/10 border border-green-500/30 text-green-400 py-2.5 px-4 rounded-lg text-xs items-center justify-center gap-2 mono">
+                <i class="fa-solid fa-circle-check"></i> Đang tải DinoX_Launcher.exe...
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
-                    <div class="tilt-inner space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
-                            <i class="fa-solid fa-gauge text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-950">Super FPS Boost</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Cắt giảm các tiến trình dựng hình không cần thiết trong game, tập trung tối đa tài nguyên cho tốc độ quét màn hình.</p>
-                    </div>
-                </div>
-
-                <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
-                    <div class="tilt-inner space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
-                            <i class="fa-solid fa-wrench text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-950">Sửa Lỗi Texture</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Giao diện điều khiển trong suốt thế hệ mới, loại bỏ hoàn toàn các lỗi nạp chồng phông chữ hoặc hiển thị lỗi hộp điều khiển.</p>
-                    </div>
-                </div>
-
-                <div class="tilt-card bg-white border border-brand-border p-8 rounded-2xl hover:shadow-lg hover:border-slate-300 smooth-transition cursor-default group">
-                    <div class="tilt-inner space-y-4">
-                        <div class="w-12 h-12 rounded-xl bg-slate-50 border border-brand-border flex items-center justify-center text-brand-cyan group-hover:bg-brand-cyan group-hover:text-white smooth-transition">
-                            <i class="fa-solid fa-eye text-lg"></i>
-                        </div>
-                        <h3 class="text-lg font-bold text-slate-950">Thiết Kế Phẳng</h3>
-                        <p class="text-slate-500 text-xs leading-relaxed">Layout tối giản hóa với nền trắng sữa mờ giúp dễ dàng định hình các nút chức năng và giữ cho tầm mắt luôn tập trung.</p>
-                    </div>
-                </div>
-
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                <a id="btn-dl-win" href="https://github.com/dinovnmw/DinoClient/releases/download/DINOXCLIENT/DinoX_Launcher.exe" class="w-full sm:w-auto px-8 py-3.5 bg-green-500 hover:bg-green-400 text-black font-semibold rounded-lg transition-colors flex items-center justify-center gap-2 mono">
+                    <i class="fa-brands fa-windows"></i> DinoX_Launcher.exe
+                </a>
+                <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="w-full sm:w-auto px-8 py-3.5 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-colors flex items-center justify-center gap-2 border border-white/10">
+                    <i class="fa-brands fa-discord"></i> Cần hỗ trợ? Vào Discord
+                </a>
             </div>
         </div>
     </section>
 
-    <section id="social" class="py-24 px-6 border-t border-brand-border bg-white relative z-10">
-        <div class="max-w-5xl mx-auto text-center">
-            <h2 class="text-2xl sm:text-3xl font-bold text-slate-950 mb-3">Kênh Liên Kết & Cộng Đồng</h2>
-            <p class="text-slate-500 text-xs sm:text-sm max-w-md mx-auto mb-16">Đồng hành cùng Dino qua các kênh truyền thông chính thức bên dưới.</p>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                
-                <a href="https://www.youtube.com/@dinovnmwvip" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-red-500/50 hover:shadow-xl smooth-transition group">
-                    <div class="tilt-inner flex flex-col items-center">
-                        <div class="w-14 h-14 rounded-xl bg-red-50 flex items-center justify-center text-red-600 mb-5 text-2xl border border-red-100 group-hover:bg-red-600 group-hover:text-white smooth-transition">
-                            <i class="fa-brands fa-youtube"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-950 mb-1">YouTube Channel</h3>
-                        <p class="text-xs text-slate-400 mb-4">@dinovnmwvip</p>
-                        <span class="text-xs font-bold text-red-600 group-hover:translate-x-1 smooth-transition inline-flex items-center gap-1">Xem video pvp <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                    </div>
-                </a>
-
-                <a href="https://guns.lol/cno" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-purple-500/50 hover:shadow-xl smooth-transition group">
-                    <div class="tilt-inner flex flex-col items-center">
-                        <div class="w-14 h-14 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 mb-5 text-2xl border border-purple-100 group-hover:bg-purple-600 group-hover:text-white smooth-transition">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-950 mb-1">Thông Tin Cá Nhân</h3>
-                        <p class="text-xs text-slate-400 mb-4">guns.lol/cno</p>
-                        <span class="text-xs font-bold text-purple-600 group-hover:translate-x-1 smooth-transition inline-flex items-center gap-1">Xem profile <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                    </div>
-                </a>
-
-                <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="tilt-card bg-white border border-brand-border p-8 rounded-2xl flex flex-col items-center hover:border-blue-500/50 hover:shadow-xl smooth-transition group">
-                    <div class="tilt-inner flex flex-col items-center">
-                        <div class="w-14 h-14 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600 mb-5 text-2xl border border-blue-100 group-hover:bg-blue-600 group-hover:text-white smooth-transition">
-                            <i class="fa-brands fa-discord"></i>
-                        </div>
-                        <h3 class="text-base font-bold text-slate-950 mb-1">Discord Server</h3>
-                        <p class="text-xs text-slate-400 mb-4">Dino Community</p>
-                        <span class="text-xs font-bold text-blue-600 group-hover:translate-x-1 smooth-transition inline-flex items-center gap-1">Tham gia ngay <i class="fa-solid fa-arrow-right text-[10px]"></i></span>
-                    </div>
-                </a>
-
+    <footer class="bg-black/40 border-t border-white/5 py-12">
+        <div class="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="space-y-4 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-green-500"></span>
+                    <span class="font-bold tracking-tight text-white mono">DINOX CLIENT</span>
+                </div>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 text-xs text-gray-400">
+                    <a href="https://www.youtube.com/@dinovnmwvip" target="_blank" class="hover:text-red-500 transition-colors flex items-center gap-1.5">
+                        <i class="fa-brands fa-youtube"></i> YouTube
+                    </a>
+                    <a href="https://guns.lol/cno" target="_blank" class="hover:text-green-400 transition-colors flex items-center gap-1.5">
+                        <i class="fa-solid fa-address-card"></i> Profile (guns.lol/cno)
+                    </a>
+                    <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="hover:text-[#5865F2] transition-colors flex items-center gap-1.5">
+                        <i class="fa-brands fa-discord"></i> Discord Server
+                    </a>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <footer class="py-12 px-6 border-t border-brand-border bg-slate-50 relative z-10">
-        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-center md:text-left">
-            <div>
-                <span class="text-sm font-bold text-slate-900">DINO CLIENT</span>
-                <p class="text-[10px] text-slate-400 mt-1">&copy; 2026 Dino Client. Tất cả quyền được bảo lưu.</p>
-            </div>
-            <div class="flex gap-4">
-                <a href="https://www.youtube.com/@dinovnmwvip" target="_blank" class="text-slate-400 hover:text-red-500 transition-colors text-sm"><i class="fa-brands fa-youtube"></i></a>
-                <a href="https://guns.lol/cno" target="_blank" class="text-slate-400 hover:text-purple-500 transition-colors text-sm"><i class="fa-solid fa-id-badge"></i></a>
-                <a href="https://discord.com/invite/haXHrsCMEx" target="_blank" class="text-slate-400 hover:text-blue-500 transition-colors text-sm"><i class="fa-brands fa-discord"></i></a>
+            <div class="text-center md:text-right space-y-1">
+                <p class="text-xs text-gray-500">© 2026 DINOCLIENT Team. All rights reserved.</p>
+                <p class="text-[10px] text-gray-600 mono">Made with extreme focus for Minecraft PvP Việt Nam</p>
             </div>
         </div>
     </footer>
 
-    <div id="download-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/30 backdrop-blur-md opacity-0 pointer-events-none smooth-transition">
-        <div class="w-full max-w-sm bg-white rounded-2xl p-6 border border-brand-border relative transform scale-95 transition-transform duration-300 shadow-2xl">
-            <button onclick="closeDownloadModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 smooth-transition"><i class="fa-solid fa-xmark"></i></button>
-
-            <div class="text-center space-y-5">
-                <div class="w-12 h-12 rounded-full bg-slate-100 flex items-center justify-center text-slate-900 text-lg mx-auto">
-                    <i class="fa-solid fa-download"></i>
-                </div>
-                <div>
-                    <h3 class="text-lg font-bold text-slate-950">Tải Xuống Dino Client</h3>
-                    <p class="text-[11px] text-slate-400 mt-0.5">Dành cho Minecraft 1.8.9</p>
-                </div>
-
-                <div class="space-y-3 text-left pt-2">
-                    <a href="https://github.com/dinovnmw/DinoClient/releases" target="_blank" onclick="closeDownloadModal()" class="flex items-center justify-between p-4 rounded-xl bg-slate-900 hover:bg-slate-800 text-white smooth-transition group">
-                        <span class="text-xs font-bold flex items-center gap-3">
-                            <i class="fa-brands fa-github text-base text-white"></i> Tải Trực Tiếp (GitHub Release)
-                        </span>
-                        <i class="fa-solid fa-chevron-right text-white/70 text-xs group-hover:translate-x-1 smooth-transition"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <script>
-        const spotlight = document.getElementById('spotlight');
-        document.addEventListener('mousemove', (e) => {
-            spotlight.style.left = `${e.clientX}px`;
-            spotlight.style.top = `${e.clientY}px`;
-        });
+        document.addEventListener('DOMContentLoaded', () => {
+            const keyMap = {
+                'KeyW': 'key-w',
+                'KeyA': 'key-a',
+                'KeyS': 'key-s',
+                'KeyD': 'key-d',
+                'Space': 'key-space'
+            };
 
-        const cards = document.querySelectorAll('.tilt-card');
-        cards.forEach(card => {
-            card.addEventListener('mousemove', (e) => {
-                const rect = card.getBoundingClientRect();
-                const x = e.clientX - rect.left;
-                const y = e.clientY - rect.top;
-                
-                const width = rect.width;
-                const height = rect.height;
-                
-                const rotateX = ((height / 2 - y) / (height / 2)) * 12;
-                const rotateY = ((x - width / 2) / (width / 2)) * 12;
-                
-                card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            window.addEventListener('keydown', (e) => {
+                const targetId = keyMap[e.code];
+                if (targetId) {
+                    const el = document.getElementById(targetId);
+                    if (el) el.classList.add('key-active');
+                }
             });
 
-            card.addEventListener('mouseleave', () => {
-                card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+            window.addEventListener('keyup', (e) => {
+                const targetId = keyMap[e.code];
+                if (targetId) {
+                    const el = document.getElementById(targetId);
+                    if (el) el.classList.remove('key-active');
+                }
+            });
+
+            window.addEventListener('mousedown', (e) => {
+                if (e.button === 0) {
+                    const el = document.getElementById('key-lmb');
+                    if (el) el.classList.add('key-active');
+                } else if (e.button === 2) {
+                    const el = document.getElementById('key-rmb');
+                    if (el) el.classList.add('key-active');
+                }
+            });
+
+            window.addEventListener('mouseup', (e) => {
+                if (e.button === 0) {
+                    const el = document.getElementById('key-lmb');
+                    if (el) el.classList.remove('key-active');
+                } else if (e.button === 2) {
+                    const el = document.getElementById('key-rmb');
+                    if (el) el.classList.remove('key-active');
+                }
+            });
+
+            const hudTester = document.getElementById('hud-tester');
+            hudTester.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+            });
+
+            const btnWin = document.getElementById('btn-dl-win');
+            const dlToast = document.getElementById('dl-toast');
+            
+            btnWin.addEventListener('click', () => {
+                dlToast.classList.remove('hidden');
+                dlToast.classList.add('flex');
+                setTimeout(() => {
+                    dlToast.classList.add('hidden');
+                    dlToast.classList.remove('flex');
+                }, 4000);
             });
         });
-
-        function openDownloadModal() {
-            const modal = document.getElementById('download-modal');
-            const inner = modal.querySelector('.transform');
-            modal.classList.remove('opacity-0', 'pointer-events-none');
-            inner.classList.remove('scale-95');
-            inner.classList.add('scale-100');
-        }
-
-        function closeDownloadModal() {
-            const modal = document.getElementById('download-modal');
-            const inner = modal.querySelector('.transform');
-            modal.classList.add('opacity-0', 'pointer-events-none');
-            inner.classList.remove('scale-100');
-            inner.classList.add('scale-95');
-        }
     </script>
 </body>
 </html>
